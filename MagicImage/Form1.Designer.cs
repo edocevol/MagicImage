@@ -105,18 +105,21 @@
             this.使用说明ToolStripMenuItem.Name = "使用说明ToolStripMenuItem";
             this.使用说明ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.使用说明ToolStripMenuItem.Text = "使用说明";
+            this.使用说明ToolStripMenuItem.Click += new System.EventHandler(this.使用说明ToolStripMenuItem_Click);
             // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
             this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.关于ToolStripMenuItem.Text = "关于";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // 意见反馈ToolStripMenuItem
             // 
             this.意见反馈ToolStripMenuItem.Name = "意见反馈ToolStripMenuItem";
             this.意见反馈ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.意见反馈ToolStripMenuItem.Text = "意见反馈";
+            this.意见反馈ToolStripMenuItem.Click += new System.EventHandler(this.意见反馈ToolStripMenuItem_Click);
             // 
             // uploadImg
             // 

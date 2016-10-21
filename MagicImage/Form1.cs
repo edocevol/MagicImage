@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -23,7 +25,15 @@ namespace MagicImage
         public Form1()
         {
             InitializeComponent();
+            string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径 
+            string sPath = ppath + "/upload";
+            if (!Directory.Exists(sPath))
+            {
+                Directory.CreateDirectory(sPath);
+            }
         }
+
+ 
 
         private void 配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -182,7 +192,7 @@ namespace MagicImage
                     img = (Bitmap)iData.GetData(DataFormats.Bitmap);
                     string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径 
                     var uuidN = Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
-                    string imgPath = ppath + "//upload" + uuidN + ".png";
+                    string imgPath = ppath + "//upload//" + uuidN + ".png";
                     img.Save(imgPath);
                     loadImg(imgPath);         
                     uploadImage(imgPath);
@@ -196,6 +206,22 @@ namespace MagicImage
             {
                 MessageBox.Show("图片上传失败");
             }
+        }
+
+        private void 使用说明ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //调用系统默认的浏览器   
+            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
+        }
+
+        private void 意见反馈ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage/issues");    
+        }
+
+        private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
         }
     }
 }
