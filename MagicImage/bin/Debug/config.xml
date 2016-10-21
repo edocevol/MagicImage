@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="gb2312"?>
+<system>
+  <tecent>
+    <APP_ID>10049741</APP_ID>
+    <SECRET_ID>AKIDa9BwvD4gIozaBcNINoxi9ZtQKQuUrPqf</SECRET_ID>
+    <SECRET_KEY>GZp0YKtp2wIhR8g0UxbgHGk4EiEZOsqe</SECRET_KEY>
+    <BUCKET_NAME>store001</BUCKET_NAME>
+  </tecent>
+</system>

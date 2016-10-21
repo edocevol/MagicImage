@@ -1,0 +1,11 @@
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\MagicImage.exe
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\MagicImage.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\CSkin.dll
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\CSkin.xml
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.Form1.resources
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.Properties.Resources.resources
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.Settings.resources
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.GenerateResource.Cache
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.exe
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
+c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
