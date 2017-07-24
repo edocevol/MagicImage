@@ -5,11 +5,11 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace QCloud.PicApi.Common
+namespace QCloud.CosApi.Common
 {
     class SHA1
     {
-        public static string GetSHA1(string filePath)
+        public static string GetFileSHA1(string filePath)
         {
             var strResult = "";
             var strHashData = "";
@@ -25,7 +25,7 @@ namespace QCloud.PicApi.Common
                 strHashData = BitConverter.ToString(arrbytHashValue);
                 //替换-
                 strHashData = strHashData.Replace("-", "");
-                strResult = strHashData;
+                strResult = strHashData.ToLower();
             }
             catch (Exception ex)
             {
@@ -33,5 +33,6 @@ namespace QCloud.PicApi.Common
             }
             return strResult;
         }
+        
     }
 }

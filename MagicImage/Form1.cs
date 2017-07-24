@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using QCloud.PicApi.Api;
-using QCloud.PicApi.Common;
+using QCloud.CosApi.Api;
+using QCloud.CosApi.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +22,8 @@ namespace MagicImage
         public string SECRET_ID = "SECRET_ID";
         public string SECRET_KEY = "SECRET_KEY";
         public string BUCKET_NAME = "bucketName";
+        public Image imagessss=null;
+       
         public Form1()
         {
             InitializeComponent();
@@ -31,6 +33,8 @@ namespace MagicImage
             {
                 Directory.CreateDirectory(sPath);
             }
+            imagessss = this.uploadImg.Image;
+            
         }
 
  
@@ -65,7 +69,8 @@ namespace MagicImage
         //依照比例加载图片
         public void loadImg(string filePath)
         {
-                      //MessageBox.Show(filePath);
+            
+            this.uploadImg.Image=imagessss;
             Bitmap bmPic = new Bitmap(filePath);
             Point ptLoction = new Point(bmPic.Size);
             if (ptLoction.X > uploadImg.Size.Width || ptLoction.Y > uploadImg.Size.Height)
@@ -102,19 +107,29 @@ namespace MagicImage
             {
                 var result = "";
                 //var bucketName = "bucketName";
-                var pic = new PicCloud(APP_ID, SECRET_ID, SECRET_KEY);
+                var cos = new CosCloud(APP_ID, SECRET_ID, SECRET_KEY);
 
-                var start = DateTime.Now.ToUnixTime();
-                result = pic.Upload(BUCKET_NAME, filepath);
-                var end = DateTime.Now.ToUnixTime();
+                var start = DateTime.Now.ToUniversalTime();
+
+                string remotePath = Path.GetFileName(filepath);
+                //上传文件（不论文件是否分片，均使用本接口）
+               var uploadParasDic = new Dictionary<string, string>();                
+               uploadParasDic.Add(CosParameters.PARA_BIZ_ATTR,"");
+               uploadParasDic.Add(CosParameters.PARA_INSERT_ONLY,"0");
+               //uploadParasDic.Add(CosParameters.PARA_SLICE_SIZE,SLICE_SIZE.SLIZE_SIZE_3M.ToString());
+               result = cos.UploadFile(BUCKET_NAME, remotePath, filepath, uploadParasDic);
+               Console.WriteLine("上传文件:" + result);
+
+
+                var end = DateTime.Now.ToUniversalTime();
                 Console.WriteLine(result);
                 var obj = (JObject)JsonConvert.DeserializeObject(result);
                 var code = (int)obj["code"];
+               // MessageBox.Show(obj.ToString());
                 if (code == 0)
                 {
                     var data = obj["data"];
-                    var fileId = data["fileid"].ToString();
-                    var downloadUrl = data["download_url"].ToString();
+                    var downloadUrl = data["url"].ToString();
 
                     Clipboard.SetDataObject("![请说明图片]("+downloadUrl+")");
                     Console.WriteLine("总用时：" + (end - start) + "毫秒");
@@ -129,6 +144,7 @@ namespace MagicImage
             }
             catch (Exception ex)
             {
+                //MessageBox.Show(ex.Message);
                 MessageBox.Show("发现一点小问题，图像上传失败了。。。。");
                 toolStripStatusLabel1.Text = "文件上传失败";
             }
@@ -137,6 +153,9 @@ namespace MagicImage
         //加载万象优图的配置文件
         public void loadConfig()
         {
+            
+            //var gd =  Sign.Signature(APP_ID, SECRET_ID, SECRET_KEY, 12*24*3600*1000, BUCKET_NAME);
+            //MessageBox.Show(gd);
             try
             {
                 string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径             
@@ -223,5 +242,7 @@ namespace MagicImage
         {
             System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
         }
+
+       
     }
 }

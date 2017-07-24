@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using QCloud.CosApi.Util;
 
-namespace QCloud.PicApi.Common
+namespace QCloud.CosApi.Common
 {
     public class Sign
     {
@@ -30,35 +31,16 @@ namespace QCloud.PicApi.Common
             }
         }
 
-        public static string DetectionSignature(int appId, string secretId, string secretKey, long expired, string bucketName, string url = null)
-        {
-            if (secretId == "" || secretKey == "")
-            {
-                return "-1";
-            }
-            var now = DateTime.Now.ToUnixTime() / 1000;
-            //var plainText = string.Format("a={0}&b={1}&k={2}&t={3}&e={4}&l={5}", appId, bucketName, secretId, now, expired, System.Web.HttpUtility.UrlEncode(url));
-            var plainText = string.Format("a={0}&b={1}&k={2}&t={3}&e={4}", appId, bucketName, secretId, now, expired);
-
-            using (HMACSHA1 mac = new HMACSHA1(Encoding.UTF8.GetBytes(secretKey)))
-            {
-                var hash = mac.ComputeHash(Encoding.UTF8.GetBytes(plainText));
-                var pText = Encoding.UTF8.GetBytes(plainText);
-                var all = new byte[hash.Length + pText.Length];
-                Array.Copy(hash, 0, all, 0, hash.Length);
-                Array.Copy(pText, 0, all, hash.Length, pText.Length);
-                return Convert.ToBase64String(all);
-            }
-        }
-
         public static string Signature(int appId, string secretId, string secretKey, long expired, string bucketName)
         {
             return Signature(appId, secretId, secretKey, expired, "", bucketName);
         }
 
-        public static string SignatureOnce(int appId, string secretId, string secretKey, string bucketName, string fileId)
+        public static string SignatureOnce(int appId, string secretId, string secretKey, string remotePath, string bucketName)
         {
+            var fileId = "/" + appId + "/" + bucketName + HttpUtils.EncodeRemotePath(remotePath);
             return Signature(appId, secretId, secretKey, 0, fileId, bucketName);
         }
+
     }
 }

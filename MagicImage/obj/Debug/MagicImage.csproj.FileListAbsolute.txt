@@ -9,3 +9,13 @@ c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicIma
 c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.exe
 c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
 c:\users\administrator\documents\visual studio 2015\Projects\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csprojResolveAssemblyReference.cache
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Form1.resources
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Properties.Resources.resources
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Settings.resources
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.GenerateResource.Cache
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.exe
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.exe
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.pdb
+C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
