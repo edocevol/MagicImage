@@ -5,5 +5,6 @@
     <SECRET_ID>AKIDa9BwvD4gIozaBcNINoxi9ZtQKQuUrPqf</SECRET_ID>
     <SECRET_KEY>GZp0YKtp2wIhR8g0UxbgHGk4EiEZOsqe</SECRET_KEY>
     <BUCKET_NAME>store001</BUCKET_NAME>
+	<URL_REGEX>![«Î ‰»ÎÕº∆¨√Ë ˆ](url)</URL_REGEX>
   </tecent>
 </system>

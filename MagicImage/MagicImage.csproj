@@ -46,6 +46,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
       <HintPath>I:\Projects\NewSCCM\NewSCCM\bin\Debug\CSkin.dll</HintPath>
@@ -117,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dll\Newtonsoft.Json.dll" />
+    <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

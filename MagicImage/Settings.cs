@@ -63,6 +63,11 @@ namespace MagicImage
                             //xn2.InnerText = bucketname.Text.Trim();//则修改 
                             bucketname.Text = xn2.InnerText;
                         }
+                        else if (xn2.Name == "URL_REGEX")
+                        {
+                            //xn2.InnerText = bucketname.Text.Trim();//则修改 
+                            urlRegex.Text = xn2.InnerText;
+                        }
                     }
                 }
             }
@@ -112,6 +117,10 @@ namespace MagicImage
                     else if (xe2.Name == "BUCKET_NAME")
                     {
                         xe2.InnerText = bucketname.Text.Trim();//则修改   
+                    }
+                    else if (xe2.Name == "URL_REGEX")
+                    {
+                        xe2.InnerText = urlRegex.Text.Trim();//则修改   
                     }
                 }
 

@@ -19,3 +19,12 @@ C:\Users\admin\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
 C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.exe
 C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.pdb
 C:\Users\admin\Source\Repos\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.exe
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.pdb
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Form1.resources
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Properties.Resources.resources
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Settings.resources
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.GenerateResource.Cache
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.exe
+C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.pdb

@@ -32,13 +32,14 @@
             this.skinMenuStrip1 = new CCWin.SkinControl.SkinMenuStrip();
             this.配置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.使用说明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.意见反馈ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadImg = new CCWin.SkinControl.SkinPictureBox();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.获取签名ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skinMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uploadImg)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -78,6 +79,7 @@
             this.skinMenuStrip1.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
             this.skinMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.配置ToolStripMenuItem,
+            this.获取签名ToolStripMenuItem,
             this.使用说明ToolStripMenuItem,
             this.意见反馈ToolStripMenuItem,
             this.关于ToolStripMenuItem});
@@ -107,19 +109,19 @@
             this.使用说明ToolStripMenuItem.Text = "使用说明";
             this.使用说明ToolStripMenuItem.Click += new System.EventHandler(this.使用说明ToolStripMenuItem_Click);
             // 
-            // 关于ToolStripMenuItem
-            // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.关于ToolStripMenuItem.Text = "关于";
-            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
-            // 
             // 意见反馈ToolStripMenuItem
             // 
             this.意见反馈ToolStripMenuItem.Name = "意见反馈ToolStripMenuItem";
             this.意见反馈ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.意见反馈ToolStripMenuItem.Text = "意见反馈";
             this.意见反馈ToolStripMenuItem.Click += new System.EventHandler(this.意见反馈ToolStripMenuItem_Click);
+            // 
+            // 关于ToolStripMenuItem
+            // 
+            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.关于ToolStripMenuItem.Text = "关于";
+            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
             // 
             // uploadImg
             // 
@@ -182,18 +184,26 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(32, 17);
             this.toolStripStatusLabel1.Text = "tips:";
             // 
+            // 获取签名ToolStripMenuItem
+            // 
+            this.获取签名ToolStripMenuItem.Name = "获取签名ToolStripMenuItem";
+            this.获取签名ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.获取签名ToolStripMenuItem.Text = "获取签名";
+            this.获取签名ToolStripMenuItem.Click += new System.EventHandler(this.获取签名ToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CaptionFont = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CaptionFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.ClientSize = new System.Drawing.Size(623, 536);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.skinButton2);
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.uploadImg);
             this.Controls.Add(this.skinMenuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.skinMenuStrip1;
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -223,6 +233,7 @@
         private CCWin.SkinControl.SkinButton skinButton2;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripMenuItem 获取签名ToolStripMenuItem;
     }
 }
 

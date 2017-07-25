@@ -22,8 +22,9 @@ namespace MagicImage
         public string SECRET_ID = "SECRET_ID";
         public string SECRET_KEY = "SECRET_KEY";
         public string BUCKET_NAME = "bucketName";
-        public Image imagessss=null;
-       
+        public string URL_REGEX = "![请输入图片描述](url)";
+        public Image imagessss = null;
+
         public Form1()
         {
             InitializeComponent();
@@ -34,10 +35,10 @@ namespace MagicImage
                 Directory.CreateDirectory(sPath);
             }
             imagessss = this.uploadImg.Image;
-            
+
         }
 
- 
+
 
         private void 配置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -69,8 +70,8 @@ namespace MagicImage
         //依照比例加载图片
         public void loadImg(string filePath)
         {
-            
-            this.uploadImg.Image=imagessss;
+
+            this.uploadImg.Image = imagessss;
             Bitmap bmPic = new Bitmap(filePath);
             Point ptLoction = new Point(bmPic.Size);
             if (ptLoction.X > uploadImg.Size.Width || ptLoction.Y > uploadImg.Size.Height)
@@ -113,38 +114,35 @@ namespace MagicImage
 
                 string remotePath = Path.GetFileName(filepath);
                 //上传文件（不论文件是否分片，均使用本接口）
-               var uploadParasDic = new Dictionary<string, string>();                
-               uploadParasDic.Add(CosParameters.PARA_BIZ_ATTR,"");
-               uploadParasDic.Add(CosParameters.PARA_INSERT_ONLY,"0");
-               //uploadParasDic.Add(CosParameters.PARA_SLICE_SIZE,SLICE_SIZE.SLIZE_SIZE_3M.ToString());
-               result = cos.UploadFile(BUCKET_NAME, remotePath, filepath, uploadParasDic);
-               Console.WriteLine("上传文件:" + result);
+                var uploadParasDic = new Dictionary<string, string>();
+                uploadParasDic.Add(CosParameters.PARA_BIZ_ATTR, "");
+                uploadParasDic.Add(CosParameters.PARA_INSERT_ONLY, "0");
+                //uploadParasDic.Add(CosParameters.PARA_SLICE_SIZE,SLICE_SIZE.SLIZE_SIZE_3M.ToString());
+                result = cos.UploadFile(BUCKET_NAME, remotePath, filepath, uploadParasDic);
+                Console.WriteLine("上传文件:" + result);
 
 
                 var end = DateTime.Now.ToUniversalTime();
                 Console.WriteLine(result);
                 var obj = (JObject)JsonConvert.DeserializeObject(result);
                 var code = (int)obj["code"];
-               // MessageBox.Show(obj.ToString());
                 if (code == 0)
                 {
                     var data = obj["data"];
-                    var downloadUrl = data["url"].ToString();
-
-                    Clipboard.SetDataObject("![请说明图片]("+downloadUrl+")");
+                    var downloadUrl = data["source_url"].ToString();
+                    Clipboard.SetDataObject(URL_REGEX.Replace("url", downloadUrl).Replace("http:","https:"));
                     Console.WriteLine("总用时：" + (end - start) + "毫秒");
                     toolStripStatusLabel1.Text = "总用时：" + (end - start) + "毫秒";
                     toolStripStatusLabel1.Text = "文件已经上传成功";
                 }
                 else
-                {               
+                {
                     MessageBox.Show("发现一点小问题，图像上传失败了。。。。");
                     toolStripStatusLabel1.Text = "文件上传失败";
-                }         
+                }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message);
                 MessageBox.Show("发现一点小问题，图像上传失败了。。。。");
                 toolStripStatusLabel1.Text = "文件上传失败";
             }
@@ -153,9 +151,6 @@ namespace MagicImage
         //加载万象优图的配置文件
         public void loadConfig()
         {
-            
-            //var gd =  Sign.Signature(APP_ID, SECRET_ID, SECRET_KEY, 12*24*3600*1000, BUCKET_NAME);
-            //MessageBox.Show(gd);
             try
             {
                 string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径             
@@ -213,7 +208,7 @@ namespace MagicImage
                     var uuidN = Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
                     string imgPath = ppath + "//upload//" + uuidN + ".png";
                     img.Save(imgPath);
-                    loadImg(imgPath);         
+                    loadImg(imgPath);
                     uploadImage(imgPath);
                 }
                 else
@@ -235,7 +230,7 @@ namespace MagicImage
 
         private void 意见反馈ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage/issues");    
+            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage/issues");
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,6 +238,10 @@ namespace MagicImage
             System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
         }
 
-       
+        private void 获取签名ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var gd = Sign.Signature(APP_ID, SECRET_ID, SECRET_KEY, 12 * 24 * 3600 * 1000, BUCKET_NAME);
+            toolStripStatusLabel1.Text = "获取签名成功";
+        }
     }
 }

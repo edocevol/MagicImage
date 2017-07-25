@@ -38,6 +38,8 @@
             this.bucketname = new CCWin.SkinControl.SkinTextBox();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
+            this.skinLabel5 = new CCWin.SkinControl.SkinLabel();
+            this.urlRegex = new CCWin.SkinControl.SkinTextBox();
             this.SuspendLayout();
             // 
             // skinLabel1
@@ -261,7 +263,7 @@
             this.skinButton1.BackColor = System.Drawing.Color.Transparent;
             this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton1.DownBack = null;
-            this.skinButton1.Location = new System.Drawing.Point(145, 279);
+            this.skinButton1.Location = new System.Drawing.Point(145, 337);
             this.skinButton1.MouseBack = null;
             this.skinButton1.Name = "skinButton1";
             this.skinButton1.NormlBack = null;
@@ -276,7 +278,7 @@
             this.skinButton2.BackColor = System.Drawing.Color.Transparent;
             this.skinButton2.ControlState = CCWin.SkinClass.ControlState.Normal;
             this.skinButton2.DownBack = null;
-            this.skinButton2.Location = new System.Drawing.Point(337, 279);
+            this.skinButton2.Location = new System.Drawing.Point(337, 337);
             this.skinButton2.MouseBack = null;
             this.skinButton2.Name = "skinButton2";
             this.skinButton2.NormlBack = null;
@@ -286,11 +288,67 @@
             this.skinButton2.UseVisualStyleBackColor = false;
             this.skinButton2.Click += new System.EventHandler(this.skinButton2_Click);
             // 
+            // skinLabel5
+            // 
+            this.skinLabel5.AutoSize = true;
+            this.skinLabel5.BackColor = System.Drawing.Color.Transparent;
+            this.skinLabel5.BorderColor = System.Drawing.Color.White;
+            this.skinLabel5.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinLabel5.ForeColor = System.Drawing.Color.Green;
+            this.skinLabel5.Location = new System.Drawing.Point(38, 279);
+            this.skinLabel5.Name = "skinLabel5";
+            this.skinLabel5.Size = new System.Drawing.Size(106, 21);
+            this.skinLabel5.TabIndex = 3;
+            this.skinLabel5.Text = "图片地址规则";
+            // 
+            // urlRegex
+            // 
+            this.urlRegex.BackColor = System.Drawing.Color.Transparent;
+            this.urlRegex.DownBack = null;
+            this.urlRegex.Icon = null;
+            this.urlRegex.IconIsButton = false;
+            this.urlRegex.IconMouseState = CCWin.SkinClass.ControlState.Normal;
+            this.urlRegex.IsPasswordChat = '\0';
+            this.urlRegex.IsSystemPasswordChar = false;
+            this.urlRegex.Lines = new string[0];
+            this.urlRegex.Location = new System.Drawing.Point(183, 279);
+            this.urlRegex.Margin = new System.Windows.Forms.Padding(0);
+            this.urlRegex.MaxLength = 32767;
+            this.urlRegex.MinimumSize = new System.Drawing.Size(28, 28);
+            this.urlRegex.MouseBack = null;
+            this.urlRegex.MouseState = CCWin.SkinClass.ControlState.Normal;
+            this.urlRegex.Multiline = false;
+            this.urlRegex.Name = "urlRegex";
+            this.urlRegex.NormlBack = null;
+            this.urlRegex.Padding = new System.Windows.Forms.Padding(5);
+            this.urlRegex.ReadOnly = false;
+            this.urlRegex.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.urlRegex.Size = new System.Drawing.Size(375, 28);
+            // 
+            // 
+            // 
+            this.urlRegex.SkinTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.urlRegex.SkinTxt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.urlRegex.SkinTxt.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.urlRegex.SkinTxt.Location = new System.Drawing.Point(5, 5);
+            this.urlRegex.SkinTxt.Name = "BaseText";
+            this.urlRegex.SkinTxt.Size = new System.Drawing.Size(365, 22);
+            this.urlRegex.SkinTxt.TabIndex = 0;
+            this.urlRegex.SkinTxt.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.urlRegex.SkinTxt.WaterText = "";
+            this.urlRegex.TabIndex = 2;
+            this.urlRegex.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.urlRegex.WaterColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(127)))), ((int)(((byte)(127)))));
+            this.urlRegex.WaterText = "";
+            this.urlRegex.WordWrap = true;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(602, 365);
+            this.ClientSize = new System.Drawing.Size(650, 413);
+            this.Controls.Add(this.urlRegex);
+            this.Controls.Add(this.skinLabel5);
             this.Controls.Add(this.skinButton2);
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.bucketname);
@@ -323,5 +381,7 @@
         private CCWin.SkinControl.SkinTextBox bucketname;
         private CCWin.SkinControl.SkinButton skinButton1;
         private CCWin.SkinControl.SkinButton skinButton2;
+        private CCWin.SkinControl.SkinLabel skinLabel5;
+        private CCWin.SkinControl.SkinTextBox urlRegex;
     }
 }
