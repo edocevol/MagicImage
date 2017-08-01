@@ -14,7 +14,7 @@
 
 # 程序下载
 我已经将打包好的程序，放在了开源中国的仓库上，下载地址为
-[点我下载](http://git.oschina.net/jsper/MagicImage/raw/master/release/setup.exe)
+[点我下载](https://github.com/sixtrees/MagicImage/releases)
 
 # 程序安装
 
