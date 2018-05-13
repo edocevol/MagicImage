@@ -6,12 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using CCWin;
 using System.Xml;
+using MetroFramework.Forms;
 
 namespace MagicImage
 {
-    public partial class Settings : Skin_Mac
+    public partial class Settings : MetroForm
     {
         public Settings()
         {

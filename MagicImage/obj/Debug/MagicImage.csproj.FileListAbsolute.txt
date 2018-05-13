@@ -28,3 +28,17 @@ C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Setti
 C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.GenerateResource.Cache
 C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.exe
 C:\Users\shugenniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.exe
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MagicImage.pdb
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\Newtonsoft.Json.dll
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Form1.resources
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Properties.Resources.resources
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.Settings.resources
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.GenerateResource.cache
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.CoreCompileInputs.cache
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.csproj.CopyComplete
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.exe
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\obj\Debug\MagicImage.pdb
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MetroFramework.Design.dll
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MetroFramework.dll
+C:\Users\zcniu\Source\Repos\MagicImage\MagicImage\bin\Debug\MetroFramework.Fonts.dll

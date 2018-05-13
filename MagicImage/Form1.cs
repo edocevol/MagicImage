@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using MetroFramework;
+using MetroFramework.Forms;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using QCloud.CosApi.Api;
 using QCloud.CosApi.Common;
@@ -9,6 +11,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.AccessControl;
 using System.Text;
 using System.Windows.Forms;
@@ -16,7 +19,7 @@ using System.Xml;
 
 namespace MagicImage
 {
-    public partial class Form1 : CCWin.Skin_Mac
+    public partial class Form1 : MetroForm
     {
         public int APP_ID = 111;
         public string SECRET_ID = "SECRET_ID";
@@ -24,7 +27,23 @@ namespace MagicImage
         public string BUCKET_NAME = "bucketName";
         public string URL_REGEX = "![请输入图片描述](url)";
         public Image imagessss = null;
+        //Constants for API Calls...  
+        private const int WM_DRAWCLIPBOARD = 0x308;
+        private const int WM_CHANGECBCHAIN = 0x30D;
 
+        //Handle for next clipboard viewer...  
+        private IntPtr mNextClipBoardViewerHWnd;
+
+        //API declarations...  
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static public extern IntPtr SetClipboardViewer(IntPtr hWndNewViewer);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        static public extern bool ChangeClipboardChain(IntPtr HWnd, IntPtr HWndNext);
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        IntPtr nextClipboardViewer;
+        private bool keepListen = true;
+        private bool keepNotification = true;
         public Form1()
         {
             InitializeComponent();
@@ -35,7 +54,7 @@ namespace MagicImage
                 Directory.CreateDirectory(sPath);
             }
             imagessss = this.uploadImg.Image;
-
+            nextClipboardViewer = (IntPtr)SetClipboardViewer(this.Handle);
         }
 
 
@@ -60,10 +79,11 @@ namespace MagicImage
                 //定义一个string用于存储路径名
                 string filePath = ((System.Array)e.Data.GetData(DataFormats.FileDrop)).GetValue(0).ToString();
                 loadImg(filePath);
+                uploadImage(filePath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("你拖拽的是图片不？");
+                MetroMessageBox.Show(this, "你拖拽的是图片不？");
             }
         }
 
@@ -104,6 +124,7 @@ namespace MagicImage
          */
         public void uploadImage(string filepath)
         {
+            loadConfig();
             try
             {
                 var result = "";
@@ -130,20 +151,25 @@ namespace MagicImage
                 {
                     var data = obj["data"];
                     var downloadUrl = data["source_url"].ToString();
-                    Clipboard.SetDataObject(URL_REGEX.Replace("url", downloadUrl).Replace("http:","https:"));
+                    Clipboard.SetDataObject(URL_REGEX.Replace("url", downloadUrl).Replace("http:", "https:"));
                     Console.WriteLine("总用时：" + (end - start) + "毫秒");
                     toolStripStatusLabel1.Text = "总用时：" + (end - start) + "毫秒";
                     toolStripStatusLabel1.Text = "文件已经上传成功";
+                    if(keepNotification)
+                    {
+                        notifyIcon1.ShowBalloonTip(2000, "图床工具提示", "图片上传成功", ToolTipIcon.Info);
+                    }
+                   
                 }
                 else
                 {
-                    MessageBox.Show("发现一点小问题，图像上传失败了。。。。");
+                    MetroMessageBox.Show(this, "发现一点小问题，图像上传失败了。。。。");
                     toolStripStatusLabel1.Text = "文件上传失败";
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("发现一点小问题，图像上传失败了。。。。");
+                MetroMessageBox.Show(this, "发现一点小问题，图像上传失败了。。。。");
                 toolStripStatusLabel1.Text = "文件上传失败";
             }
         }
@@ -189,53 +215,24 @@ namespace MagicImage
             }
             catch (Exception ex)
             {
-                MessageBox.Show("好像没有找到配置文件");
-            }
-        }
-
-        //上传拖拽的图片
-        private void skinButton2_Click(object sender, EventArgs e)
-        {
-            loadConfig();
-            try
-            {
-                IDataObject iData = Clipboard.GetDataObject();
-                Image img = null;
-                if (iData.GetDataPresent(DataFormats.Bitmap))
-                {
-                    img = (Bitmap)iData.GetData(DataFormats.Bitmap);
-                    string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径 
-                    var uuidN = Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
-                    string imgPath = ppath + "//upload//" + uuidN + ".png";
-                    img.Save(imgPath);
-                    loadImg(imgPath);
-                    uploadImage(imgPath);
-                }
-                else
-                {
-                    MessageBox.Show("系统剪贴板中没有图片");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("图片上传失败");
+                MetroMessageBox.Show(this, "好像没有找到配置文件");
             }
         }
 
         private void 使用说明ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //调用系统默认的浏览器   
-            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
+            System.Diagnostics.Process.Start("https://github.com/sixtrees/MagicImage");
         }
 
         private void 意见反馈ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage/issues");
+            System.Diagnostics.Process.Start("https://github.com/sixtrees/MagicImage/issues/");
         }
 
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://git.oschina.net/jsper/MagicImage");
+            System.Diagnostics.Process.Start("https://github.com/sixtrees/MagicImage/releases/");
         }
 
         private void 获取签名ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,5 +240,156 @@ namespace MagicImage
             var gd = Sign.Signature(APP_ID, SECRET_ID, SECRET_KEY, 12 * 24 * 3600 * 1000, BUCKET_NAME);
             toolStripStatusLabel1.Text = "获取签名成功";
         }
+
+        #region Message Process  
+        //Override WndProc to get messages...  
+        protected override void WndProc(ref Message m)
+        {
+            if (!keepListen) return;
+            switch (m.Msg)
+            {
+                case WM_DRAWCLIPBOARD:
+                    {
+                        SendMessage(mNextClipBoardViewerHWnd, m.Msg, m.WParam.ToInt32(), m.LParam.ToInt32());
+                        //显示剪贴板中的图片信息  
+                        if (Clipboard.ContainsImage())
+                        {
+                            IDataObject iData = Clipboard.GetDataObject();
+                            Image img = (Bitmap)iData.GetData(DataFormats.Bitmap);
+                            string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径 
+                            var uuidN = Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
+                            string imgPath = ppath + "//upload//" + uuidN + ".png";
+                            img.Save(imgPath);
+                            loadImg(imgPath);
+                            uploadImage(imgPath);
+                            uploadImg.Update();
+                        }
+                        break;
+                    }
+                case WM_CHANGECBCHAIN:
+                    {
+                        //Another clipboard viewer has removed itself...  
+                        if (m.WParam == (IntPtr)mNextClipBoardViewerHWnd)
+                        {
+                            mNextClipBoardViewerHWnd = m.LParam;
+                        }
+                        else
+                        {
+                            SendMessage(mNextClipBoardViewerHWnd, m.Msg, m.WParam.ToInt32(), m.LParam.ToInt32());
+                        }
+                        break;
+                    }
+            }
+            base.WndProc(ref m);
+        }
+        #endregion
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (this.Visible)
+            {
+                this.Hide();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            try
+            {
+
+                //显示剪贴板中的图片信息  
+                if (Clipboard.ContainsImage())
+                {
+                    IDataObject iData = Clipboard.GetDataObject();
+                    Image img = (Bitmap)iData.GetData(DataFormats.Bitmap);
+                    string ppath = System.Environment.CurrentDirectory;//获取当前应用程序的路径 
+                    var uuidN = Guid.NewGuid().ToString("N"); // e0a953c3ee6040eaa9fae2b667060e09 
+                    string imgPath = ppath + "//upload//" + uuidN + ".png";
+                    img.Save(imgPath);
+                    loadImg(imgPath);
+                    uploadImage(imgPath);
+                    uploadImg.Update();
+                    //uploadImg.Image = Clipboard.GetImage();
+                    //uploadImg.Update();
+                }
+            }
+            catch (Exception ex)
+            {
+                MetroMessageBox.Show(this, "图片上传失败");
+            }
+        }
+
+        private void home_Click(object sender, EventArgs e)
+        {
+            if (this.Visible)
+            {
+                this.Hide();
+                this.contextMenuStrip1.Items[0].Text = "显示主界面";
+            }
+            else
+            {
+                this.Show();
+                this.WindowState = FormWindowState.Normal;
+                this.contextMenuStrip1.Items[0].Text = "隐藏主界面";
+            }
+        }
+
+        private void listen_Click(object sender, EventArgs e)
+        {
+            if (!keepListen)
+            {
+                keepListen = true;
+                this.contextMenuStrip1.Items[1].Text = "取消监听粘贴板";
+                this.contextMenuStrip1.Items[1].Image = global::MagicImage.Properties.Resources.unlisten;
+            }
+            else
+            {
+                keepListen = false;
+                this.contextMenuStrip1.Items[1].Text = "监听粘贴板";
+                this.contextMenuStrip1.Items[1].Image = global::MagicImage.Properties.Resources.listen;
+            }
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 关闭通知ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+            if (!keepNotification)
+            {
+                keepNotification = true;
+                this.contextMenuStrip1.Items[2].Text = "取消系统通知";
+                this.contextMenuStrip1.Items[2].Image = global::MagicImage.Properties.Resources.jingyin;
+            }
+            else
+            {
+                keepNotification = false;
+                this.contextMenuStrip1.Items[2].Text = "开启系统通知";
+                this.contextMenuStrip1.Items[2].Image = global::MagicImage.Properties.Resources.shengyin;
+            }
+        }
+
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                this.contextMenuStrip1.Items[0].Text = "显示主界面";
+            }
+        }
+
     }
 }
