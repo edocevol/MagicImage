@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="gb2312"?>
+<system>
+  <tecent>
+    <APP_ID></APP_ID>
+    <SECRET_ID></SECRET_ID>
+    <SECRET_KEY></SECRET_KEY>
+    <BUCKET_NAME></BUCKET_NAME>
+    <URL_REGEX>![请输入图片描述](url)</URL_REGEX>
+  </tecent>
+</system>

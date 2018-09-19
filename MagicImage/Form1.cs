@@ -139,7 +139,9 @@ namespace MagicImage
                 uploadParasDic.Add(CosParameters.PARA_BIZ_ATTR, "");
                 uploadParasDic.Add(CosParameters.PARA_INSERT_ONLY, "0");
                 //uploadParasDic.Add(CosParameters.PARA_SLICE_SIZE,SLICE_SIZE.SLIZE_SIZE_3M.ToString());
-                result = cos.UploadFile(BUCKET_NAME, remotePath, filepath, uploadParasDic);
+
+                //远程路径增加年月日，方便图片分类
+                result = cos.UploadFile(BUCKET_NAME, DateTime.Now.ToString("yyyy/MM/dd/") + remotePath, filepath, uploadParasDic);
                 Console.WriteLine("上传文件:" + result);
 
 
