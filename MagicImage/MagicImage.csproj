@@ -142,6 +142,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dll\Newtonsoft.Json.dll" />
     <Content Include="icon.ico" />
     <None Include="Resources\home.bmp" />
